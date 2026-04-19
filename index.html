@@ -896,7 +896,7 @@
       const parts = p.name.trim().split(' ');
       const last = parts.pop();
       document.getElementById('hero-name').innerHTML = parts.join('<br/>') + '<br/><em>' + last + '</em>';
-      document.getElementById('hero-sub').textContent = (p.bio || [])[0] || '';
+      document.getElementById('hero-sub').textContent = p.tagline || (p.bio || [])[0] || '';
       if (p.photo) {
         const img = new Image();
         img.src = p.photo; img.alt = p.name;
