@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Conceptual VR Simulation Framework",
+    "description": "Developing a generalizablevir framework for representing abstract conceptual knowledge as interactive, navigable VR environments.",
+    "status": "ongoing",
+    "icon": "eye"
+  },
+  {
+    "title": "Virtual reality cycling over low latency networks",
+    "description": "Implemented immersive virtual reality cycling platform with real-time competition and dynamic resistance feedback, achieving low latency for smooth gameplay.",
+    "status": "completed",
+    "icon": "layers"
+  }
+]

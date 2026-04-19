@@ -1,0 +1,74 @@
+[
+  {
+    "year": "2026",
+    "title": "Toward Stateful Generative Environments from Structured Content",
+    "authors": [
+      "Pasindu Bolonghege",
+      "Thivya Kandappu"
+    ],
+    "highlight_author": "Pasindu Bolonghege",
+    "venue": "AutoSys 2026",
+    "abstract": "Interactive simulations are powerful tools for experiential and embodied learning, yet they remain largely handcrafted and domain-specific. Creating such systems typically requires manually translating conceptual knowledge into executable models, limiting scalability and reuse across domains. We argue that simulations should instead be \\emph{compiled from conceptual content}, automatically transforming text, diagrams, or structured explanations into parameterized, manipulable environments.\n\nThis position paper proposes a research agenda for \\emph{stateful generative environments} that combine generative model synthesis with closed-loop adaptation. We introduce a domain-agnostic abstraction that represents conceptual content as executable models consisting of objects, state variables, manipulable parameters, and dynamic update rules. These models can be compiled into interactive simulation environments, including XR settings, where users explore system behavior by manipulating parameters. Beyond one-shot generation, such environments can leverage multimodal sensing to infer user interaction states and adapt simulations to guide exploration. We outline the architectural foundations required to realize this vision and identify open challenges in structured content extraction, dynamic consistency, cross-domain generalization, and on-device adaptive inference. Treating interactive environments as compiled knowledge artifacts opens a new direction for generative, sensor-aware, and domain-agnostic simulation systems.",
+    "links": [
+      {
+        "label": "PDF",
+        "url": "publications/Toward_Stateful_Generative_Environments_from_Structured_Content_Autosys.pdf"
+      },
+      {
+        "label": "DOI",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "title": "Motor-Mediated Creativity: Bridging Embodied Skill Training and Digital Expression",
+    "authors": [
+      "Pasindu Bolonghege",
+      "Gevindu Ganganath",
+      "Nipuni Karumpulli Arachchige",
+      "Paul Benedict Lincoln",
+      "Thivya Kandappu"
+    ],
+    "highlight_author": "Pasindu Bolonghege",
+    "venue": "ACM CHI 2026",
+    "abstract": "Expressive digital drawing requires nuanced motor control, subtle variations in pressure, velocity, and rhythm that convey affect and style. While experts develop this embodied fluency through years of practice, novices struggle to produce marks that match their intentions, creating a gap between vision and execution. We propose motor-mediated creativity: treating motor training as integral to digital expression. Our system, MOTUS, instantiates this through structured practice of expressive primitives, expert-referenced feedback, and ideation prompts that encourage exploration.\nWe report a two-stage investigation. A formative study characterized: (a) novice challenges in motor fluency, (b) examined how different feedback types, including corrective feedback, helped participants understand their mistakes, (c) how prompts, generic or embodied, support engagement with abstract expressive content. A controlled evaluation then linked fluency gains to subjective and expert ratings of expressiveness. Together, our findings show that scaffolding motor skills is a viable strategy for enhancing expressive agency in digital drawing.",
+    "links": [
+      {
+        "label": "PDF",
+        "url": "publications/ExpressiveCreativity_CHI26.pdf"
+      },
+      {
+        "label": "DOI",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "year": "2025",
+    "title": "Virtual Reality Cycling: A Competitive and Low-Latency Exer-Gaming Environment",
+    "authors": [
+      "Pasindu M. Bolonghe",
+      "Dulmi T. Chathumini",
+      "Naduni Damsari Liyanage",
+      "Dilan Senuruk",
+      "Dileeka Dias",
+      "Kasun T. Hemachandra",
+      "Nipun Herath",
+      "Nayan G. Dharmaraj"
+    ],
+    "highlight_author": "Pasindu M. Bolonghe",
+    "venue": "IEEE GEM 2025",
+    "abstract": "Virtual cycling is an engaging way to promote health and fitness while addressing the safety challenges of outdoor cycling. This paper introduces a Competitive Virtual Cycling (CVC) system that enhances user experience through immersive visuals, real-time competition, and low-latency networking. The system integrates virtual reality (VR) headsets, smart bicycle trainers, and real-world 360° videos to create a realistic gaming environment. A dynamic resistance feedback mechanism, driven by real-time sensor data from smart trainers and actuators, adjusts pedal resistance based on terrain variations, ensuring an authentic riding experience. To enhance engagement, we propose a novel avatar placement algorithm that optimizes competitor visibility in immersive, interactive races. Performance evaluations show that the system achieves a mean latency of 60 ms on a 4G network and 30 ms on a private 5G network, staying within the 63 ms cyber-sickness threshold for smooth, responsive gameplay. A comprehensive user experience survey revealed that 85% of the participants rated the system as \"Excellent\" or \"Good\", highlighting its ability to deliver a high-quality immersive virtual cycling experience.",
+    "links": [
+      {
+        "label": "PDF",
+        "url": "publications/VRCycleGEM25.pdf"
+      },
+      {
+        "label": "DOI",
+        "url": "#"
+      }
+    ]
+  }
+]

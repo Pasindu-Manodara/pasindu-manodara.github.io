@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading…</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #F7F5F0;
+      --surface: #EFECE5;
+      --border: #DDD9CF;
+      --text: #1C1917;
+      --muted: #78716C;
+      --accent: #2A6049;
+      --accent-lt: #EAF2EE;
+      --serif: 'Lora', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+      --max: 860px;
+      --nav-h: 64px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    #loading {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: opacity .4s ease;
+    }
+
+    #loading.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      margin: 0 4px;
+      animation: blink 1.2s ease-in-out infinite;
+    }
+
+    .loader-dot:nth-child(2) {
+      animation-delay: .2s;
+    }
+
+    .loader-dot:nth-child(3) {
+      animation-delay: .4s;
+    }
+
+    @keyframes blink {
+
+      0%,
+      80%,
+      100% {
+        opacity: .2
+      }
+
+      40% {
+        opacity: 1
+      }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      background: rgba(247, 245, 240, .88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 3rem);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: .01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .82rem;
+      font-weight: 400;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    main {
+      padding-top: var(--nav-h);
+    }
+
+    section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5rem clamp(1.5rem, 5vw, 2.5rem);
+    }
+
+    #hero {
+      min-height: calc(100vh - var(--nav-h));
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 3rem;
+      padding-top: 6rem;
+      padding-bottom: 4rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent-lt);
+      color: var(--accent);
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    #hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: -.02em;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+
+    #hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .6rem 1.2rem;
+      border-radius: 6px;
+      font-size: .85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: #1e4d38;
+      border-color: #1e4d38;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-lt);
+    }
+
+    .hero-avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-avatar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 60% 30%, var(--accent-lt) 0%, transparent 70%);
+    }
+
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .avatar-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+      z-index: 1;
+    }
+
+    .avatar-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-label {
+      font-size: .7rem;
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: .05em;
+    }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .5rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .section-divider {
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 2.5rem;
+    }
+
+    #about {
+      border-top: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-size: .97rem;
+    }
+
+    .about-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: .15rem;
+    }
+
+    .info-label {
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .info-value {
+      font-size: .9rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .interest-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1.8rem;
+    }
+
+    .tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: .78rem;
+      padding: .3rem .8rem;
+      border-radius: 4px;
+      font-weight: 400;
+    }
+
+    #publications {
+      border-top: 1px solid var(--border);
+    }
+
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pub-item {
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .pub-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .pub-year {
+      font-family: var(--serif);
+      font-size: .85rem;
+      color: var(--muted);
+      font-style: italic;
+      padding-top: .15rem;
+      min-width: 42px;
+    }
+
+    .pub-content h3 {
+      font-family: var(--serif);
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text);
+      margin-bottom: .3rem;
+    }
+
+    .pub-authors {
+      font-size: .83rem;
+      color: var(--muted);
+      margin-bottom: .3rem;
+    }
+
+    .pub-authors strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .pub-venue {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-lt);
+      padding: .15rem .6rem;
+      border-radius: 3px;
+      margin-bottom: .7rem;
+    }
+
+    .pub-links {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+    }
+
+    .pub-link {
+      font-size: .78rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: .2rem .65rem;
+      border-radius: 4px;
+      transition: all .15s;
+    }
+
+    .pub-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-lt);
+    }
+
+    .pub-abstract-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      margin-top: .6rem;
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-family: var(--sans);
+      transition: color .15s;
+    }
+
+    .pub-abstract-toggle:hover {
+      color: var(--accent);
+    }
+
+    .pub-abstract-toggle svg {
+      transition: transform .25s ease;
+    }
+
+    .pub-abstract-toggle.open svg {
+      transform: rotate(180deg);
+    }
+
+    .pub-abstract-toggle.open {
+      color: var(--accent);
+    }
+
+    .pub-abstract-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .3s ease;
+    }
+
+    .pub-abstract-body.open {
+      grid-template-rows: 1fr;
+    }
+
+    .pub-abstract-inner {
+      overflow: hidden;
+    }
+
+    .pub-abstract-text {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.75;
+      padding: .8rem 1rem;
+      margin-top: .5rem;
+      background: var(--surface);
+      border-left: 2px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+    }
+
+    #projects {
+      border-top: 1px solid var(--border);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.6rem;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 24px rgba(42, 96, 73, .08);
+      transform: translateY(-2px);
+    }
+
+    .project-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-lt);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-card h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .project-card p {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .project-status {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .status-dot.ongoing {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .4
+      }
+    }
+
+    #cv {
+      border-top: 1px solid var(--border);
+    }
+
+    .cv-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .cv-box h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: .4rem;
+    }
+
+    .cv-box p {
+      font-size: .88rem;
+      color: var(--muted);
+      max-width: 460px;
+    }
+
+    #contact {
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: .5rem;
+    }
+
+    .contact-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: all .2s;
+      background: var(--surface);
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-lt);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-type {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      margin-bottom: .1rem;
+    }
+
+    .contact-val {
+      font-size: .85rem;
+      font-weight: 400;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem clamp(1.5rem, 5vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-name {
+      font-family: var(--serif);
+      font-size: .88rem;
+      color: var(--muted);
+    }
+
+    .footer-note {
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media(max-width:680px) {
+      #hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 4rem;
+      }
+
+      .hero-links {
+        justify-content: center;
+      }
+
+      .hero-avatar {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto;
+        order: -1;
+      }
+
+      .hero-sub {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .cv-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="loading"><span class="loader-dot"></span><span class="loader-dot"></span><span class="loader-dot"></span>
+  </div>
+
+  <nav>
+    <a href="#hero" class="nav-logo" id="nav-logo">PMB</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#cv">CV</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="hero">
+      <div class="hero-text">
+        <span class="hero-badge" id="hero-badge"></span>
+        <h1 id="hero-name"></h1>
+        <p class="hero-sub" id="hero-sub"></p>
+        <div class="hero-links">
+          <a href="#publications" class="btn btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg>
+            Publications
+          </a>
+          <a href="#projects" class="btn btn-outline">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+            Projects
+          </a>
+          <a href="#contact" class="btn btn-outline">Get in touch</a>
+        </div>
+      </div>
+      <div class="hero-avatar" id="hero-avatar">
+        <div class="avatar-placeholder">
+          <div class="avatar-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#78716C" stroke-width="1.5">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </div>
+          <span class="avatar-label">Add your photo</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="reveal">
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">Researcher, Builder, Educator</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="about-grid reveal">
+        <div class="about-text" id="about-bio"></div>
+        <div class="about-info" id="about-info"></div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="reveal">
+        <p class="section-label">Publications</p>
+        <h2 class="section-title">Research Papers</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="pub-list" id="pub-list"></div>
+    </section>
+
+    <section id="projects">
+      <div class="reveal">
+        <p class="section-label">Research Projects</p>
+        <h2 class="section-title">Current &amp; Past Work</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="projects-grid" id="projects-grid"></div>
+    </section>
+
+    <section id="cv">
+      <div class="reveal">
+        <p class="section-label">Curriculum Vitae</p>
+        <h2 class="section-title">Full CV</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="cv-box reveal">
+        <div>
+          <h3>Download my CV</h3>
+          <p>A complete overview of my education, research experience, publications, and skills. Updated regularly.</p>
+        </div>
+        <a href="Pasindu_Manodara_CV_2026.pdf" class="btn btn-primary" download>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Download PDF
+        </a>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="reveal">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="section-divider"></div>
+        <p style="color:var(--muted);font-size:.95rem;margin-bottom:2rem;max-width:500px;">I'm always happy to discuss
+          research, collaborations, or just talk about VR and education.</p>
+      </div>
+      <div class="contact-grid reveal" id="contact-grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="footer-name" id="footer-name"></span>
+    <span class="footer-note" id="footer-note"></span>
+  </footer>
+
+  <script>
+    const ICONS = {
+      eye: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A6049" stroke-width="1.8"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>`,
+      monitor: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A6049" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
+      layers: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A6049" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
+      default: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A6049" stroke-width="1.8"><circle cx="12" cy="12" r="10"/></svg>`,
+      email: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+      github: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>`,
+      scholar: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
+      linkedin: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`,
+    };
+
+    function renderHero(p) {
+      document.title = p.name + ' — ' + p.position;
+      document.getElementById('nav-logo').textContent = p.initials || p.name.split(' ').map(w => w[0]).join('');
+      document.getElementById('hero-badge').textContent = p.position + ' · ' + p.institution;
+      const parts = p.name.trim().split(' ');
+      const last = parts.pop();
+      document.getElementById('hero-name').innerHTML = parts.join('<br/>') + '<br/><em>' + last + '</em>';
+      document.getElementById('hero-sub').textContent = (p.bio || [])[0] || '';
+      if (p.photo) {
+        const img = new Image();
+        img.src = p.photo; img.alt = p.name;
+        const av = document.getElementById('hero-avatar');
+        img.onload = () => { av.innerHTML = ''; av.appendChild(img); };
+      }
+    }
+
+    function renderAbout(p) {
+      const bioEl = document.getElementById('about-bio');
+      (p.bio || []).forEach(t => { const el = document.createElement('p'); el.textContent = t; bioEl.appendChild(el); });
+      if (p.interests?.length) {
+        const wrap = document.createElement('div'); wrap.className = 'interest-tags';
+        p.interests.forEach(i => { const s = document.createElement('span'); s.className = 'tag'; s.textContent = i; wrap.appendChild(s); });
+        bioEl.appendChild(wrap);
+      }
+      const infoEl = document.getElementById('about-info');
+      [['Position', p.position], ['Institution', p.institution], ['Location', p.location], ['Research Area', p.research_area], ['Focus', p.focus]]
+        .filter(([, v]) => v)
+        .forEach(([l, v]) => { infoEl.innerHTML += `<div class="info-item"><span class="info-label">${l}</span><span class="info-value">${v}</span></div>`; });
+    }
+
+    function renderPublications(pubs) {
+      const list = document.getElementById('pub-list');
+      pubs.forEach((pub, i) => {
+        const authors = (pub.authors || []).map(a => a === pub.highlight_author ? `<strong>${a}</strong>` : a).join(', ');
+        const links = (pub.links || []).map(l => `<a href="${l.url}" class="pub-link" target="_blank" rel="noopener">${l.label}</a>`).join('');
+        const abstractId = `abstract-${i}`;
+        const abstractHTML = pub.abstract ? `
+          <button class="pub-abstract-toggle" aria-expanded="false" aria-controls="${abstractId}" onclick="toggleAbstract(this,'${abstractId}')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            Abstract
+          </button>
+          <div class="pub-abstract-body" id="${abstractId}" role="region">
+            <div class="pub-abstract-inner">
+              <p class="pub-abstract-text">${pub.abstract}</p>
+            </div>
+          </div>` : '';
+        list.innerHTML += `<div class="pub-item reveal"><span class="pub-year">${pub.year}</span><div class="pub-content"><h3>${pub.title}</h3><p class="pub-authors">${authors}</p><span class="pub-venue">${pub.venue}</span><div class="pub-links">${links}</div>${abstractHTML}</div></div>`;
+      });
+    }
+
+    function toggleAbstract(btn, id) {
+      const body = document.getElementById(id);
+      const isOpen = body.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      btn.setAttribute('aria-expanded', isOpen);
+      btn.querySelector('span') && (btn.querySelector('span').textContent = isOpen ? 'Abstract' : 'Abstract');
+    }
+
+    function renderProjects(projects) {
+      const grid = document.getElementById('projects-grid');
+      projects.forEach(proj => {
+        const ongoing = proj.status === 'ongoing';
+        const dot = ongoing ? `<span class="status-dot ongoing"></span>` : `<span class="status-dot" style="background:var(--muted)"></span>`;
+        grid.innerHTML += `<div class="project-card reveal"><div class="project-icon">${ICONS[proj.icon] || ICONS.default}</div><h3>${proj.title}</h3><p>${proj.description}</p><span class="project-status">${dot}${ongoing ? 'Ongoing' : 'Completed'}</span></div>`;
+      });
+    }
+
+    function renderContact(c) {
+      const grid = document.getElementById('contact-grid');
+      const items = [
+        { key: 'email', label: 'Email', href: `mailto:${c.email}`, display: c.email, icon: ICONS.email },
+        { key: 'github', label: 'GitHub', href: `https://github.com/${c.github}`, display: `@${c.github}`, icon: ICONS.github },
+        { key: 'scholar', label: 'Google Scholar', href: c.scholar, display: 'Scholar Profile', icon: ICONS.scholar },
+        { key: 'linkedin', label: 'LinkedIn', href: c.linkedin?.startsWith('http') ? c.linkedin : `https://linkedin.com/in/${c.linkedin}`, display: c.linkedin?.replace(/^https?:\/\/(www\.)?linkedin\.com\/in\//, '').replace(/\/$/, ''), icon: ICONS.linkedin },
+      ];
+      items.forEach(item => {
+        if (!c[item.key]) return;
+        grid.innerHTML += `<a href="${item.href}" target="_blank" rel="noopener" class="contact-card">${item.icon}<div class="contact-info"><span class="contact-type">${item.label}</span><span class="contact-val">${item.display}</span></div></a>`;
+      });
+    }
+
+    function renderFooter(p) {
+      document.getElementById('footer-name').textContent = p.name;
+      document.getElementById('footer-note').textContent = p.position + ' · ' + p.institution + ' · ' + new Date().getFullYear();
+    }
+
+    function initReveal() {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const siblings = [...e.target.parentElement.querySelectorAll('.reveal:not(.visible)')];
+          setTimeout(() => e.target.classList.add('visible'), siblings.indexOf(e.target) * 80);
+          obs.unobserve(e.target);
+        });
+      }, { threshold: .1 });
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    }
+
+    function initNav() {
+      const links = document.querySelectorAll('.nav-links a');
+      new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id)); });
+      }, { rootMargin: '-40% 0px -55% 0px' }).observe && document.querySelectorAll('section[id]').forEach(s =>
+        new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-40% 0px -55% 0px' }).observe(s)
+      );
+    }
+
+    async function loadData() {
+      try {
+        const bust = '?v=' + Date.now();
+        const [pr, pubr, projr] = await Promise.all([fetch('data/profile.json' + bust), fetch('data/publications.json' + bust), fetch('data/projects.json' + bust)]);
+        if (!pr.ok || !pubr.ok || !projr.ok) throw new Error('Data files missing');
+        const [profile, publications, projects] = await Promise.all([pr.json(), pubr.json(), projr.json()]);
+        renderHero(profile);
+        renderAbout(profile);
+        renderPublications(publications);
+        renderProjects(projects);
+        renderContact(profile.contact || {});
+        renderFooter(profile);
+        const loader = document.getElementById('loading');
+        loader.classList.add('hidden');
+        setTimeout(() => loader.remove(), 500);
+        initReveal(); initNav();
+      } catch (err) {
+        console.error(err);
+        document.getElementById('loading').innerHTML = `<p style="color:#78716C;font-family:sans-serif;text-align:center;padding:2rem;max-width:480px">Could not load site data.<br/><br/><small>Make sure <code>data/profile.json</code>, <code>data/publications.json</code>, and <code>data/projects.json</code> exist and you are serving the site over HTTP — not opening <code>index.html</code> directly as a local file.</small></p>`;
+      }
+    }
+
+    loadData();
+  </script>
+</body>
+
+</html>

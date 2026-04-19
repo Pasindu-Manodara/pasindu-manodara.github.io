@@ -1,0 +1,27 @@
+{
+  "name": "Pasindu Manodara Bolonghe",
+  "initials": "PMB",
+  "position": "Research Engineer",
+  "institution": "Singapore Management University",
+  "location": "Singapore",
+  "research_area": "VR for Education",
+  "focus": "Simulating Conceptual Content in VR",
+  "photo": "myPhoto.jpeg",
+  "bio": [
+    "I am a Research Engineer at the Singapore Management University (SMU), where I do research in the field of Virtual Reality (VR) for Eductaion. My research focuses on developing immersive VR simulations that represent abstract conceptual knowledge, enabling interactive and experiential learning through Large Language Models. I am passionate about exploring how VR can transform education by making complex concepts tangible and engaging for learners."
+  ],
+  "interests": [
+    "Virtual Reality",
+    "VR for Education",
+    "LLM",
+    "Immersive Simulations",
+    "Instructional Design",
+    "Human-Computer Interaction"
+  ],
+  "contact": {
+    "email": "pasindub@smu.edu.sg",
+    "github": "Pasindu-Manodara",
+    "scholar": "https://scholar.google.com/citations?user=AHoRgowAAAAJ&hl=th",
+    "linkedin": "pasindu-manodara"
+  }
+}
